@@ -1,0 +1,83 @@
+<div class="grid grid-cols-2 gap-4 p-4">
+  <!-- Using @if ... @else (Angular 17+) -->
+  @if (isTextVisible()) {
+  <div class="col-span-2 border p-4 rounded-lg shadow bg-gray-50">
+    <input
+      type="text"
+      placeholder="Text is visible (@if)"
+      class="w-full p-2 border border-green-400 rounded-lg"
+    />
+  </div>
+  } @else {
+  <div class="col-span-2 border p-4 rounded-lg shadow bg-gray-50">
+    <div class="text-red-500 font-semibold">Text is hidden</div>
+  </div>
+  }
+
+  <!-- Using *ngIf ... else -->
+  <div class="col-span-2 border p-4 rounded-lg shadow bg-gray-50">
+    <h3 class="font-bold mb-2 text-blue-600">Using *ngIf ... else</h3>
+    <div *ngIf="isTextVisible(); else elseTemplate">
+      <input
+        type="text"
+        placeholder="Text is visible (*ngIf)"
+        class="w-full p-2 border border-green-400 rounded-lg"
+      />
+    </div>
+    <ng-template #elseTemplate>
+      <div class="text-red-500 font-semibold">Text is hidden (ng-template)</div>
+    </ng-template>
+  </div>
+
+  <!-- Buttons to toggle visibility -->
+  <div class="col-span-2 flex justify-end mt-4">
+    <button
+      (click)="showText()"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >
+      Show
+    </button>
+    <button
+      (click)="hideText()"
+      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"
+    >
+      Hide
+    </button>
+  </div>
+
+  <!-- Debug info -->
+  <div class="col-span-2 text-center mt-4 text-sm text-gray-600">
+    <p><strong>isTextVisible():</strong> {{ isTextVisible() }}</p>
+  </div>
+</div>
+
+<div class="grid grid-cols-2 gap-8 p-6">
+  <!-- Angular 17 @for syntax -->
+  <div class="col-span-1 border rounded-lg shadow bg-white p-4">
+    <h3 class="text-lg font-bold text-blue-600 mb-4">for (Angular 17)</h3>
+    <ul class="list-none p-0 m-0">
+      @for (item of courseName; track $index) {
+      <li class="py-2 px-4 border-b border-gray-200 hover:bg-blue-50">
+        <span class="font-semibold text-gray-700">ID:</span> {{ item.id }}
+        <br />
+        <span class="font-semibold text-gray-700">Name:</span> {{ item.name }}
+      </li>
+      }
+    </ul>
+  </div>
+
+  <!-- Traditional *ngFor syntax -->
+  <div class="col-span-1 border rounded-lg shadow bg-white p-4">
+    <h3 class="text-lg font-bold text-green-600 mb-4">*ngFor (Classic)</h3>
+    <ul class="list-none p-0 m-0">
+      <li
+        class="py-2 px-4 border-b border-gray-200 hover:bg-green-50"
+        *ngFor="let item of courseName"
+      >
+        <span class="font-semibold text-gray-700">ID:</span> {{ item.id }}
+        <br />
+        <span class="font-semibold text-gray-700">Name:</span> {{ item.name }}
+      </li>
+    </ul>
+  </div>
+</div>
