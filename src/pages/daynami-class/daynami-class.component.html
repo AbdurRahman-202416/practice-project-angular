@@ -1,0 +1,104 @@
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 max-w-7xl mx-auto">
+  <!-- ngClass Section -->
+  <div class="bg-white shadow-lg rounded-lg p-6">
+    <h2 class="text-2xl font-bold text-center text-blue-600 mb-4">
+      Tailwind CSS Class Tester
+    </h2>
+    <p class="text-gray-700 text-center mb-2">
+      Type any Tailwind CSS class below and see the changes in real time.
+    </p>
+
+    <!-- Input box -->
+    <input
+      type="text"
+      [(ngModel)]="dynamicClass"
+      placeholder="e.g., bg-yellow-100 text-red-500 text-xl"
+      class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+
+    <!-- Result box using [ngClass] -->
+    <div
+      [ngClass]="dynamicClass"
+      class="p-6 mt-6 border rounded-lg transition-all duration-300 ease-in-out"
+    >
+      <p class="text-center font-bold">
+        This is a sample text with the applied Tailwind CSS class.
+      </p>
+    </div>
+
+    <!-- Example buttons -->
+    <div class="mt-6">
+      <h3 class="font-semibold text-gray-800 mb-2">Try These Examples:</h3>
+      <div class="flex flex-wrap gap-2">
+        <button
+          class="bg-blue-100 text-blue-700 px-4 py-2 rounded hover:bg-blue-200"
+          (click)="
+            dynamicClass = 'bg-blue-100 text-blue-700 text-lg rounded shadow-md'
+          "
+        >
+          Blue Box
+        </button>
+        <button
+          class="bg-green-100 text-green-700 px-4 py-2 rounded hover:bg-green-200"
+          (click)="dynamicClass = 'bg-green-100 text-green-700 text-lg italic'"
+        >
+          Green Italic
+        </button>
+        <button
+          class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded hover:bg-yellow-200"
+          (click)="
+            dynamicClass = 'bg-yellow-100 text-yellow-800 text-xl font-semibold'
+          "
+        >
+          Yellow Highlight
+        </button>
+        <button
+          class="bg-red-100 text-red-700 px-4 py-2 rounded hover:bg-red-200"
+          (click)="dynamicClass = 'bg-red-100 text-red-700 text-base underline'"
+        >
+          Red Underline
+        </button>
+      </div>
+    </div>
+
+    <!-- Property binding version -->
+    <div class="mt-8 pt-6 border-t">
+      <h3 class="font-semibold text-gray-800 mb-2">Using [class] binding</h3>
+      <div [class]="'p-6 mt-2 border rounded-lg ' + dynamicClass">
+        <p class="text-center font-bold">
+          This is a sample text using [class] binding.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ngStyle Section -->
+  <div class="bg-white shadow-lg rounded-lg p-6">
+    <h2 class="text-xl font-bold mb-4 text-center text-gray-700">
+      NgStyle Binding Example
+    </h2>
+
+    <div class="bg-gray-900 text-white p-4 rounded">
+      <p
+        [ngStyle]="{ backgroundColor: className }"
+        class="p-4 rounded text-center font-semibold"
+      >
+        This text style uses NgStyle binding
+      </p>
+
+      <label
+        for="className"
+        class="block mt-4 mb-1 text-sm font-medium text-gray-300"
+      >
+        Enter a background color (e.g. red, blue, #ffcc00)
+      </label>
+      <input
+        [(ngModel)]="className"
+        type="text"
+        id="className"
+        placeholder="e.g. blue"
+        class="w-full p-2 text-white placeholder-gray-400 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+    </div>
+  </div>
+</div>
