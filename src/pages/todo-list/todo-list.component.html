@@ -1,0 +1,139 @@
+<div class="min-h-screen bg-gray-950 text-white font-sans px-4 py-10">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-4xl font-extrabold text-center mb-10 tracking-tight">
+      📝 Todo List
+    </h1>
+
+    <!-- Add Todo Form -->
+    <div class="bg-gray-800 rounded-xl p-6 shadow-lg mb-10 space-y-4">
+      <h2 class="text-xl font-semibold">Add New Todo</h2>
+
+      <input
+        type="text"
+        [(ngModel)]="newTodo.text"
+        class="w-full p-3 bg-gray-700 rounded-md placeholder-gray-400 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        placeholder="Task title"
+      />
+
+      <div class="flex gap-4">
+        <select
+          [(ngModel)]="newTodo.priority"
+          class="flex-1 p-3 bg-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        >
+          <option disabled selected value="">Select Priority</option>
+          <option value="high">🔥 High</option>
+          <option value="medium">🌟 Medium</option>
+          <option value="low">💤 Low</option>
+        </select>
+
+        <input
+          type="date"
+          [(ngModel)]="newTodo.deadline"
+          class="flex-1 p-3 bg-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+      </div>
+
+      <button
+        (click)="addTodo()"
+        class="w-full bg-indigo-600 hover:bg-indigo-700 p-3 rounded-md text-white font-semibold transition-colors"
+      >
+        ➕ Add Todo
+      </button>
+    </div>
+
+    <!-- Todo List -->
+    <div class="space-y-4">
+      <div
+        *ngFor="let todo of todos"
+        class="flex items-start justify-between bg-gray-800 border border-gray-700 p-4 rounded-lg shadow hover:shadow-lg transition-shadow"
+      >
+        <div class="flex items-start gap-3">
+          <input
+            type="checkbox"
+            [checked]="todo.complete"
+            (change)="updateTodoStatus(todo)"
+            class="mt-1 h-5 w-5 text-indigo-600 bg-gray-700 rounded focus:ring-indigo-500"
+          />
+          <div>
+            <p
+              class="text-lg font-medium"
+              [ngClass]="todo.complete ? 'line-through text-gray-400' : ''"
+            >
+              {{ todo.text }}
+            </p>
+            <p class="text-sm text-gray-400">
+              {{ todo.priority | titlecase }} | Deadline : 📅
+              {{ todo.deadline }}
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-2">
+          <button
+            (click)="editTodo(todo)"
+            class="bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded text-sm"
+          >
+            ✏️ Edit
+          </button>
+          <button
+            (click)="deleteTodo(todo)"
+            class="bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded text-sm"
+          >
+            🗑 Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div
+      *ngIf="isEditing"
+      class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+    >
+      <div
+        class="bg-gray-900 w-full max-w-md p-6 rounded-xl shadow-lg space-y-4"
+      >
+        <h2 class="text-xl font-semibold mb-2">Edit Todo</h2>
+
+        <input
+          type="text"
+          [(ngModel)]="currentTodo.text"
+          class="w-full p-3 bg-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          placeholder="Edit Task Title"
+        />
+
+        <div class="flex gap-4">
+          <select
+            [(ngModel)]="currentTodo.priority"
+            class="flex-1 p-3 bg-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            <option value="high">🔥 High</option>
+            <option value="medium">🌟 Medium</option>
+            <option value="low">💤 Low</option>
+          </select>
+
+          <input
+            type="date"
+            [(ngModel)]="currentTodo.deadline"
+            class="flex-1 p-3 bg-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+
+        <div class="flex justify-end gap-2">
+          <button
+            (click)="updateTodo()"
+            class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded text-white"
+          >
+            ✅ Update
+          </button>
+          <button
+            (click)="cancelEdit()"
+            class="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded text-white"
+          >
+            ❌ Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

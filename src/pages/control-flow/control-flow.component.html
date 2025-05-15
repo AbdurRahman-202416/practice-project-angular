@@ -81,3 +81,20 @@
     </ul>
   </div>
 </div>
+
+<div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+  <p
+    class="bg-indigo-200 hover:bg-orange-400 text-orange-600 py-2 px-4 rounded-lg m-2"
+  >
+    Citys From Array
+  </p>
+
+  <ul class="flex flex-wrap justify-center">
+    <li
+      *ngFor="let city of citys"
+      class="bg-orange-200 hover:bg-orange-400 text-orange-600 py-2 px-4 rounded-lg m-2"
+    >
+      {{ city }}
+    </li>
+  </ul>
+</div>

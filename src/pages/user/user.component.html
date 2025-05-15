@@ -1,69 +1,95 @@
-<div
-  class="max-w-[500px] mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-8 bg-white shadow-xl rounded-lg text-gray-900"
->
-  <div class="rounded-t-lg h-32 overflow-hidden">
-    <img
-      class="object-cover object-top w-full"
-      src="https://scontent.fdac24-1.fna.fbcdn.net/v/t39.30808-6/485113066_4796571873901215_4078462999030926559_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=KlkCi8U0wmQQ7kNvwFpW2y9&_nc_oc=AdmTyEBKNL47AYzE4E0fNg_ZH6hWq2Z8mhsD0BmaJXgVvnYoNyoFWDG1C56ybBmLfTE&_nc_zt=23&_nc_ht=scontent.fdac24-1.fna&_nc_gid=0vfrEIfOJmSyej76I6YXPQ&oh=00_AfLAwCBXvp2ZiSvLIYQbsHcB6fUdh19AwodmZhniIIxnaA&oe=6825FB2D"
-      alt="Background"
-    />
-  </div>
-  <div
-    class="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden"
-  >
-    <img
-      class="object-cover object-center h-32 w-32"
-      src="https://scontent.fdac24-1.fna.fbcdn.net/v/t39.30808-6/485113066_4796571873901215_4078462999030926559_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=KlkCi8U0wmQQ7kNvwFpW2y9&_nc_oc=AdmTyEBKNL47AYzE4E0fNg_ZH6hWq2Z8mhsD0BmaJXgVvnYoNyoFWDG1C56ybBmLfTE&_nc_zt=23&_nc_ht=scontent.fdac24-1.fna&_nc_gid=0vfrEIfOJmSyej76I6YXPQ&oh=00_AfLAwCBXvp2ZiSvLIYQbsHcB6fUdh19AwodmZhniIIxnaA&oe=6825FB2D"
-      alt="Abdur Rahman"
-    />
-  </div>
-  <div class="text-center mt-2">
-    <h2 class="font-semibold">Abdur Rahman (Shanto)</h2>
-    <p class="text-gray-500">Frontend Web Developer</p>
-  </div>
-  <ul class="py-4 mt-2 text-gray-700 flex items-center justify-around">
-    <li class="flex flex-col items-center justify-around">
-      <svg
-        class="w-4 fill-current text-blue-900"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-      >
-        <path
-          d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
-        />
-      </svg>
-      <div>5k</div>
-    </li>
-    <li class="flex flex-col items-center justify-between">
-      <svg
-        class="w-4 fill-current text-blue-900"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-      >
-        <path
-          d="M7 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0 1c2.15 0 4.2.4 6.1 1.09L12 16h-1.25L10 20H4l-.75-4H2L.9 10.09A17.93 17.93 0 0 1 7 9zm8.31.17c1.32.18 2.59.48 3.8.92L18 16h-1.25L16 20h-3.96l.37-2h1.25l1.65-8.83zM13 0a4 4 0 1 1-1.33 7.76 5.96 5.96 0 0 0 0-7.52C12.1.1 12.53 0 13 0z"
-        />
-      </svg>
-      <div>12k</div>
-    </li>
-    <li class="flex flex-col items-center justify-around">
-      <svg
-        class="w-4 fill-current text-blue-900"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-      >
-        <path
-          d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z"
-        />
-      </svg>
-      <div>30</div>
-    </li>
-  </ul>
-  <div class="p-4 border-t mx-8 mt-2">
-    <button
-      class="w-1/2 block mx-auto rounded-full bg-gray-900 hover:bg-gray-700 hover:shadow-lg font-semibold text-white px-6 py-2"
+<!-- Wrapper -->
+<div class="min-h-screen bg-gray-900 text-white p-6 font-sans">
+  <h1 class="text-4xl font-bold mb-6 text-center">User Dashboard</h1>
+
+  <!-- Grid layout -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Profile Card (always visible, content updates on selection) -->
+    <div
+      class="max-w-[500px] mx-auto bg-white shadow-xl rounded-lg text-gray-900"
     >
-      Follow
-    </button>
+      <div class="rounded-t-lg h-32 overflow-hidden">
+        <img
+          class="object-cover object-center h-32 w-full"
+          [src]="
+            selectedUser?.id
+              ? 'https://i.pravatar.cc/300?img=' + selectedUser?.id
+              : 'assets/default-profile.jpg'
+          "
+          alt="User background"
+        />
+      </div>
+      <div
+        class="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden"
+      >
+        <img
+          class="object-cover object-center h-32 w-32"
+          [src]="
+            selectedUser?.id
+              ? 'https://i.pravatar.cc/300?img=' + selectedUser?.id
+              : 'assets/default-profile.jpg'
+          "
+          alt="User Photo"
+        />
+      </div>
+      <div class="text-center mt-2">
+        <h2 class="font-semibold">
+          {{ selectedUser?.name || 'No User Selected' }}
+        </h2>
+        <p class="text-gray-500">{{ selectedUser?.email || '' }}</p>
+      </div>
+      <ul
+        *ngIf="selectedUser"
+        class="py-4 mt-2 text-gray-700 text-sm px-6 space-y-1"
+      >
+        <li><strong>Username:</strong> {{ selectedUser.username }}</li>
+        <li><strong>Phone:</strong> {{ selectedUser.phone }}</li>
+        <li><strong>Website:</strong> {{ selectedUser.website }}</li>
+        <li><strong>Company:</strong> {{ selectedUser.company?.name }}</li>
+        <li>
+          <strong>Address:</strong>
+          {{ selectedUser.address?.street }}, {{ selectedUser.address?.suite }},
+          {{ selectedUser.address?.city }},
+          {{ selectedUser.address?.zipcode }}
+        </li>
+      </ul>
+      <div *ngIf="!selectedUser" class="py-4 mt-2 text-gray-700 text-sm px-6">
+        Select a user to view details
+      </div>
+    </div>
+
+    <!-- Users Table -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-gray-800 rounded-lg shadow">
+        <thead>
+          <tr class="bg-gray-700 text-left">
+            <th class="px-4 py-2">ID</th>
+            <th class="px-4 py-2">Name</th>
+            <th class="px-4 py-2">Email</th>
+            <th class="px-4 py-2">City</th>
+            <th class="px-4 py-2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let user of users"
+            class="border-b border-gray-700 hover:bg-gray-700 transition"
+          >
+            <td class="px-4 py-2">{{ user.id }}</td>
+            <td class="px-4 py-2">{{ user.name }}</td>
+            <td class="px-4 py-2">{{ user.email }}</td>
+            <td class="px-4 py-2">{{ user.address.city }}</td>
+            <td class="px-4 py-2">
+              <button
+                class="bg-indigo-600 hover:bg-indigo-700 px-3 py-1 rounded text-sm"
+                (click)="getUserById(user.id)"
+              >
+                View
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

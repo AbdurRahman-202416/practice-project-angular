@@ -16,6 +16,7 @@ export class ControlFlowComponent {
     { id: 2, name: 'React' },
     { id: 3, name: 'Vue' },
   ];
+  citys: string[] = ['Dhaka', 'Chittagong', 'Khulna', 'Rajshahi'];
   // constructor() {
   //   setTimeout(() => {
   //     this.isVisible = false;
